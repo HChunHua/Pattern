@@ -1,11 +1,15 @@
 import React from 'react';
 
 export default class Person extends React.Component {
-    constructor(props){
+    
+    constructor( props ){
         super( props );
-        this.state = {
-            test: 1
-        }
+        
+        this.constr = this.constr.bind(this);
+    }
+    
+    constr(){
+        console.log("00")
     }
 
     render(){
