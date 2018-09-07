@@ -7,20 +7,27 @@ export default class App extends React.Component {
         super( props );
         this.state = {
             list: {
+                // val: 0,
                 name: "hch",
                 email: "159187"
             }
         }
         this.test = this.test.bind(this);
+        this.detail = this.detail.bind(this);
+    }
+
+    detail(){
+        console.log("000")
     }
 
     test(val = 1,params={}){
-        console.log(val,'val')
-        console.log(params,'params')
+
         if(params){
-            const data = Object.assign({},this.state.list,{name: val})
             this.setState({
-                list: data
+                list: {
+                    val,
+                    ...params
+                }
             },()=>{
                 console.log(this.state.list,'lst')
             })
@@ -28,13 +35,14 @@ export default class App extends React.Component {
     }
 
     render() {
-        const params = this.state.list
         return (
             <div className="App">
                 设计模式
                 <Children 
                     data={this.state.list} 
-                    test={params => this.test(val=1,params)}
+                    test={params => this.test(1,params)}
+                    params={this.state.list}
+                    detail={this.detail}
                 />
             </div>
         );

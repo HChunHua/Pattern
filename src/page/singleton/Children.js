@@ -4,21 +4,33 @@ import Common from './Common';
 export default class Children extends Common {
     constructor( props ){
         super( props );
-    }
-    componentDidMount(){
-        console.log("componentDidMount")
-        console.log(this.state.is_type,'type')
+
+        this.test = this.test.bind(this);
     }
 
-    // componentDidUpdate(newProps,nextProps){
-    //     console.log(newProps,'newProps')
-    //     console.log(componentDidUpdate,'componentDidUpdate')
-    // }
+    componentDidMount(){
+        console.log("componentDidMount")
+    }
+
+    componentDidUpdate(newProps,nextProps){
+        console.log(newProps,'newProps')
+        console.log('componentDidUpdate')
+    }
+
+    test(){
+        const val = 2;
+        this.props.test({
+            ...this.props.params,
+            val,
+            name: "ch"
+        })
+    }
 
     render(){
         return (
             <div>
-                <span>Children</span>
+                <div onClick={this.props.detail}>test</div>
+                <div onClick={this.test}>Children</div>
             </div>
         )
     }
